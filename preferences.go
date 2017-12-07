@@ -68,7 +68,7 @@ type Preferences struct {
 
 // GetMyPreferences retrieves the accouunt preferences for the currently authenticated user. Requires the 'identity' OAuth scope.
 func (c *Client) GetMyPreferences() (*Preferences, error) {
-	url := fmt.Sprintf("%s/api/v1/me/preferences", baseAuthURL)
+	url := fmt.Sprintf("%s/api/v1/me/preferences", c.baseURL)
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		return nil, err
@@ -95,7 +95,7 @@ func (c *Client) GetMyPreferences() (*Preferences, error) {
 
 // UpdateMyPreferences updates the accouunt preferences for the currently authenticated user. Requires the 'account' OAuth scope.
 func (c *Client) UpdateMyPreferences(preferences *Preferences) (*Preferences, error) {
-	url := fmt.Sprintf("%s/api/v1/me/preferences", baseAuthURL)
+	url := fmt.Sprintf("%s/api/v1/me/preferences", c.baseURL)
 	buffer := new(bytes.Buffer)
 	json.NewEncoder(buffer).Encode(preferences)
 	req, err := http.NewRequest("PATCH", url, buffer)

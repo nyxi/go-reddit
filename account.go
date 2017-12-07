@@ -69,7 +69,7 @@ type Account struct {
 
 // GetMe retrieves the user account for the currently authenticated user. Requires the 'identity' OAuth scope.
 func (c *Client) GetMe() (*Account, error) {
-	url := fmt.Sprintf("%s/api/v1/me", baseAuthURL)
+	url := fmt.Sprintf("%s/api/v1/me", c.baseURL)
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		return nil, err

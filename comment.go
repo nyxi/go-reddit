@@ -55,7 +55,7 @@ func (c *Client) EditCommentText(commentID string, text string) error {
 
 // GetLinkComments retrieves a listing of comments for the given link.
 func (c *Client) GetLinkComments(linkID string) ([]*Comment, error) {
-	url := fmt.Sprintf("%s/comments/%s", baseURL, linkID)
+	url := fmt.Sprintf("%s/comments/%s", c.baseURL, linkID)
 	resp, err := c.http.Get(url)
 	if err != nil {
 		return nil, err

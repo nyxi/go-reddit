@@ -86,7 +86,7 @@ func (c *Client) GetPopularSubreddits() ([]*Subreddit, error) {
 }
 
 func (c *Client) getSubreddits(where string) ([]*Subreddit, error) {
-	url := fmt.Sprintf("%s/subreddits/%s.json", baseURL, where)
+	url := fmt.Sprintf("%s/subreddits/%s.json", c.baseURL, where)
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		return nil, err

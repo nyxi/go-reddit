@@ -19,7 +19,7 @@ type Award struct {
 
 // GetMyTrophies retrieves a list of awards for the currently authenticated user. Requires the 'identity' OAuth scope.
 func (c *Client) GetMyTrophies() ([]*Award, error) {
-	url := fmt.Sprintf("%s/api/v1/me/trophies", baseAuthURL)
+	url := fmt.Sprintf("%s/api/v1/me/trophies", c.baseURL)
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		return nil, err

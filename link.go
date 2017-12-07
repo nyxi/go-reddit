@@ -113,7 +113,7 @@ func (c *Client) GetTopLinks(subreddit string) ([]*Link, error) {
 func (c *Client) HideLink(linkID string) error {
 	data := url.Values{}
 	data.Set("id", fmt.Sprintf("%s_%s", linkType, linkID))
-	url := fmt.Sprintf("%s/api/hide", baseAuthURL)
+	url := fmt.Sprintf("%s/api/hide", c.baseURL)
 	req, err := http.NewRequest("POST", url, bytes.NewBufferString(data.Encode()))
 
 	if err != nil {
@@ -136,7 +136,7 @@ func (c *Client) HideLink(linkID string) error {
 }
 
 func (c *Client) getLinks(subreddit string, sort string) ([]*Link, error) {
-	url := fmt.Sprintf("%s/r/%s/%s.json", baseURL, subreddit, sort)
+	url := fmt.Sprintf("%s/r/%s/%s.json", c.baseURL, subreddit, sort)
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		return nil, err
