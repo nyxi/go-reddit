@@ -159,8 +159,8 @@ func (c *Client) getLinks(subreddit string, sort string) ([]*Link, error) {
 	}
 
 	var links []*Link
-	for _, link := range result.Data.Children {
-		links = append(links, &link.Data)
+	for i := 0; i < len(result.Data.Children); i++ {
+		links = append(links, &result.Data.Children[i].Data)
 	}
 
 	return links, nil
