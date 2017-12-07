@@ -147,6 +147,8 @@ func (c *Client) getLinks(subreddit string, sort string) ([]*Link, error) {
 	resp, err := c.http.Do(req)
 	if err != nil {
 		return nil, err
+	} else if resp.StatusCode != 200 {
+		return nil, errors.New(fmt.Sprintf("HTTP Status Code: %d", resp.StatusCode))
 	}
 	defer resp.Body.Close()
 
