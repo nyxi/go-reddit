@@ -12,18 +12,20 @@ import (
 
 const (
 	baseAuthURL = "https://oauth.reddit.com"
-	baseURL     = "http://reddit.com"
+	baseURL     = "https://www.reddit.com"
 )
 
 // Client is the client for interacting with the Reddit API.
 type Client struct {
+	baseURL   string
 	http      *http.Client
 	userAgent string
 }
 
 // NoAuthClient is the unauthenticated client for interacting with the Reddit API.
 var NoAuthClient = &Client{
-	http: new(http.Client),
+	baseURL: baseURL,
+	http:    new(http.Client),
 }
 
 func (c *Client) commentOnThing(fullname string, text string) error {
