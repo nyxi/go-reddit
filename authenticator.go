@@ -133,6 +133,7 @@ func (a *Authenticator) GetToken(state string, code string) (*oauth2.Token, erro
 // GetAuthClient generates a new authenticated client using the supplied access token.
 func (a *Authenticator) GetAuthClient(token *oauth2.Token) *Client {
 	return &Client{
+		baseURL:   baseAuthURL,
 		http:      a.config.Client(oauth2.NoContext, token),
 		userAgent: a.userAgent,
 	}
